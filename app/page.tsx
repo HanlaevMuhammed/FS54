@@ -8,7 +8,7 @@ export default function FullLanding() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [menuOpen, setMenuOpen] = useState(false)
 
-  // 🌧 Дождь символов
+  // 🌧 Анимация дождя символов
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -53,9 +53,8 @@ export default function FullLanding() {
     }
   }, [])
 
-  // 🔹 Навигация
   const navLinks = [
-    { name: 'Главная', href: '#' },
+    { name: 'Главная', href: '#hero' },
     { name: 'Преимущества', href: '#features' },
     { name: 'Процесс', href: '#process' },
     { name: 'Тарифы', href: '#tariffs' },
@@ -94,7 +93,7 @@ export default function FullLanding() {
   ]
   const [typedCode, setTypedCode] = useState<string[]>([])
 
-  // Эффект "пишущей машинки"
+  // эффект машинки
   useEffect(() => {
     let lineIndex = 0
     let charIndex = 0
@@ -119,41 +118,58 @@ export default function FullLanding() {
     type()
   }, [])
 
+  useEffect(() => {
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname)
+      window.scrollTo({ top: 0, behavior: 'instant' })
+    }
+  }, [])
+
   return (
     <div className="relative bg-white text-gray-900 font-sans overflow-x-hidden">
-      {/* 🌧 Canvas дождь */}
       <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none z-0" />
 
-      {/* 🌐 Header (теперь не фиксированный) */}
+      {/* Header */}
       <header className="relative z-50 bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-10">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-6 md:py-10">
+
+          {/* Логотип */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 cursor-pointer"
+            className="flex flex-col items-center text-center cursor-pointer"
           >
-            FastSites54
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+              FastSites54
+            </h1>
+            <span className="text-xs sm:text-sm text-gray-600 mt-1 tracking-wide opacity-80">
+              by Hanlaev&nbsp;&amp;&nbsp;Partners
+            </span>
           </motion.div>
 
-          <nav className="hidden md:flex items-center gap-8 text-gray-700 font-medium">
+          {/* Навигация */}
+          <nav className="hidden lg:flex items-center gap-8 text-gray-700 font-medium">
             {navLinks.map((link, i) => (
-              <motion.a
-                key={i}
-                href={link.href}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-                className="relative group"
-              >
+              <motion.a key={i} href={link.href} className="relative group">
                 {link.name}
                 <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-full"></span>
               </motion.a>
             ))}
           </nav>
 
-          <div className="flex items-center gap-4">
+          {/* Кнопка и бургер */}
+          <div className="flex flex-col items-center gap-3">
+            {/* Телефон и кнопка видны только на больших экранах */}
+            <a
+              href="tel:+79539015434"
+              className="hidden lg:block text-gray-700 text-lg font-semibold hover:text-cyan-600 transition-colors"
+            >
+              +7 (953) 901-54-34
+            </a>
+
             <Button
-              className="hidden md:inline bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 text-white px-8 py-3 rounded-full shadow-md hover:scale-105 hover:shadow-xl transition-transform text-xl font-semibold"
+              className="hidden lg:inline bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 text-white px-8 py-3 rounded-full shadow-md hover:scale-105 hover:shadow-xl transition-transform text-xl font-semibold"
               asChild
             >
               <a href="https://t.me/hanlaevm5" target="_blank" rel="noopener noreferrer">
@@ -161,12 +177,18 @@ export default function FullLanding() {
               </a>
             </Button>
 
-            <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-gray-700">
-              {menuOpen ? <X size={26} /> : <Menu size={26} />}
+            {/* 📱 Бургер до 1024 px включительно */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="lg:hidden text-gray-700 p-2 mt-2 rounded-lg hover:bg-gray-100 transition-colors active:opacity-70"
+              aria-label="Открыть меню"
+            >
+              {menuOpen ? <X size={24} strokeWidth={1.8} /> : <Menu size={24} strokeWidth={1.8} />}
             </button>
           </div>
         </div>
 
+        {/* Мобильное меню */}
         <AnimatePresence>
           {menuOpen && (
             <motion.div
@@ -178,25 +200,20 @@ export default function FullLanding() {
             >
               <div className="flex flex-col items-center py-6 gap-6 text-lg text-gray-800 font-medium">
                 {navLinks.map((link, i) => (
-                  <a
-                    key={i}
-                    href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="hover:text-cyan-600 transition-colors"
-                  >
+                  <a key={i} href={link.href} onClick={() => setMenuOpen(false)} className="hover:text-cyan-600 transition-colors">
                     {link.name}
                   </a>
                 ))}
+
+                <a href="tel:+79539015434" className="text-gray-700 text-lg font-semibold hover:text-cyan-600 transition-colors">
+                  +7 (953) 901-54-34
+                </a>
+
                 <Button
                   className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 text-white px-6 py-3 rounded-full shadow-md hover:scale-105 hover:shadow-xl transition-transform text-base font-semibold"
                   asChild
                 >
-                  <a
-                    href="https://t.me/hanlaevm5"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setMenuOpen(false)}
-                  >
+                  <a href="https://t.me/hanlaevm5" target="_blank" rel="noopener noreferrer">
                     Заказать сайт
                   </a>
                 </Button>
@@ -205,6 +222,9 @@ export default function FullLanding() {
           )}
         </AnimatePresence>
       </header>
+
+
+
 
       {/* Hero Section */}
       <section id="hero" className="relative z-10 flex flex-col items-center justify-center text-center py-32 px-6">
@@ -245,7 +265,7 @@ export default function FullLanding() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="relative z-10 py-1 px-6 max-w-6xl mx-auto">
+      <section id="features" className="relative z-10 py-20 px-6 max-w-6xl mx-auto">
         <motion.div
           className="grid md:grid-cols-4 gap-8 text-center"
           initial="hidden"
