@@ -227,7 +227,7 @@ export default function FullLanding() {
 
 
       {/* Hero Section */}
-      <section id="hero" className="relative z-10 flex flex-col items-center justify-center text-center py-32 px-6">
+      <section id="hero" className="relative z-10 flex flex-col items-center justify-center text-center py-32 px-1">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
