@@ -207,7 +207,7 @@ export default function FullLanding() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative z-10 flex flex-col items-center justify-center text-center py-32 px-6">
+      <section id="hero" className="relative z-10 flex flex-col items-center justify-center text-center py-32 px-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -245,7 +245,7 @@ export default function FullLanding() {
       </section>
 
       {/* Features Section */}
-      <section className="relative z-10 py-1 px-6 max-w-6xl mx-auto">
+      <section id="features" className="relative z-10 py-1 px-6 max-w-6xl mx-auto">
         <motion.div
           className="grid md:grid-cols-4 gap-8 text-center"
           initial="hidden"
@@ -280,7 +280,7 @@ export default function FullLanding() {
       </section>
 
       {/* Process Section */}
-      <section className="relative z-10 py-20 px-6">
+      <section id="process" className="relative z-10 py-20 px-6">
         <div className="bg-white rounded-3xl shadow-xl p-8 max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-12 text-cyan-500">Как мы работаем</h2>
           <div className="space-y-6">
@@ -301,7 +301,7 @@ export default function FullLanding() {
       </section>
 
       {/* Tariffs Section */}
-      <section className="relative z-10 py-20 px-6">
+      <section id="tariffs" className="relative z-10 py-20 px-6">
         <div className="bg-white rounded-3xl shadow-xl p-8 max-w-6xl mx-auto text-center space-y-8">
           <h2 className="text-3xl font-bold mb-12 text-cyan-500">Тарифы</h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -357,7 +357,7 @@ export default function FullLanding() {
       </section>
 
 
-      <section className="relative z-10 py-20 px-6 text-center">
+      <section id="contacts" className="relative z-10 py-20 px-6 text-center">
         <div className="bg-white p-10 rounded-3xl shadow-xl w-full max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold mb-6 text-cyan-500">
             Готовы запустить сайт уже завтра?
