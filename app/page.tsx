@@ -16,7 +16,8 @@ export default function FullLanding() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const letters = '0123456789ABCDEF<>/{}[]()'
+    // Более “кодовые” символы
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     const fontSize = 16
     let columns = Math.floor(window.innerWidth / fontSize)
     let drops = Array(columns).fill(0)
@@ -31,28 +32,43 @@ export default function FullLanding() {
     window.addEventListener('resize', resize)
 
     let animationFrameId: number
-    const draw = () => {
-      ctx.fillStyle = 'rgba(255,255,255,0.05)'
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-      ctx.fillStyle = 'rgba(0,150,255,0.45)'
-      ctx.font = fontSize + 'px monospace'
+    let lastTime = 0
+    const fps = 20 // частота кадров (меньше = медленнее)
+    const frameInterval = 1000 / fps
 
-      for (let i = 0; i < drops.length; i++) {
-        if (Math.random() > 0.85) continue
-        const text = letters[Math.floor(Math.random() * letters.length)]
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize)
-        drops[i] += 0.8
-        if (drops[i] * fontSize > canvas.height) drops[i] = 0
+    const draw = (time = 0) => {
+      const delta = time - lastTime
+      if (delta > frameInterval) {
+        lastTime = time
+
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.05)'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+        ctx.fillStyle = '#00d0ffff' // зелёный “матрицный” код
+        ctx.font = fontSize + 'px monospace'
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = letters[Math.floor(Math.random() * letters.length)]
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize)
+
+          // медленнее падение
+          drops[i] += Math.random() * 0.5 + 0.2
+
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0
+          }
+        }
       }
-
       animationFrameId = requestAnimationFrame(draw)
     }
     draw()
+
     return () => {
       cancelAnimationFrame(animationFrameId)
       window.removeEventListener('resize', resize)
     }
   }, [])
+
 
   const navLinks = [
     { name: 'Главная', href: '#hero' },
