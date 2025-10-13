@@ -30,16 +30,40 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     type: "website",
   },
+  icons: {
+    icon: "/favicon.ico",
+  },
+  alternates: {
+    canonical: "https://fs54.ru/",
+  },
 };
-
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "FS54",
+    url: "https://fs54.ru/",
+    logo: "https://fs54.ru/og-image.png",
+    description:
+      "Современные сайты за 24 часа. Адаптивный дизайн, индивидуальный проект под ключ.",
+    sameAs: [
+      "https://t.me/fastsites54",
+    ],
+  };
+
   return (
-    <html lang="en">
+    <html lang="ru">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
