@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Zap, Activity, Code, Laptop, Menu, X } from 'lucide-react'
 import { Button } from '@/src/components/ui/button'
+import { FaTelegramPlane, FaWhatsapp } from 'react-icons/fa'
 
 export default function FullLanding() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -62,23 +63,23 @@ export default function FullLanding() {
   ]
 
   const features = [
-    { title: 'Скорость', desc: 'Готовый сайт за 24 часа — быстро, чётко, без лишних слов.', icon: <Zap className="w-8 h-8 text-cyan-500 mx-auto" /> },
-    { title: 'Дизайн', desc: 'Чисто, стильно, с фокусом на вашу аудиторию.', icon: <Laptop className="w-8 h-8 text-cyan-500 mx-auto" /> },
-    { title: 'Рост бизнеса', desc: 'Сайт не просто красивый — он продаёт.', icon: <Activity className="w-8 h-8 text-cyan-500 mx-auto" /> },
+    { title: 'Скорость', desc: 'Быстро — не значит поверхностно. Мы делаем сайты приносящие результат.', icon: <Zap className="w-8 h-8 text-cyan-500 mx-auto" /> },
+    { title: 'Дизайн', desc: 'Современный стиль и чёткий фокус на тех, кто важен вашему бизнесу.', icon: <Laptop className="w-8 h-8 text-cyan-500 mx-auto" /> },
+    { title: 'Рост бизнеса', desc: 'Мы создаём сайты, которые не только впечатляют, но и приносят прибыль.', icon: <Activity className="w-8 h-8 text-cyan-500 mx-auto" /> },
     { title: 'Чистота кода', desc: 'Быстрая загрузка, гибкость, лёгкое масштабирование.', icon: <Code className="w-8 h-8 text-cyan-500 mx-auto" /> },
   ]
 
   const processSteps = [
     'Свяжитесь с нами в Telegram',
     'Опишите ваш бизнес и идеи',
-    'Мы создаём сайт за 24 часа',
-    'Получаете готовый сайт и файлы',
+    'Мы разработаем сайт за 24 часа',
+    'Вы получаете готовый сайт и доступы',
   ]
 
   const tariffs = [
-    { name: 'Базовый', price: '10 000 ₽', desc: 'Стартовый сайт, до 5 страниц, адаптивный дизайн' },
-    { name: 'Продвинутый', price: '20 000 ₽', desc: 'Сайт с анимациями, SEO, до 10 страниц' },
-    { name: 'Премиум', price: '35 000 ₽', desc: 'Полный комплекс: сайт + брендирование + поддержка' },
+    { name: 'Старт', oldPrice: '14 990 ₽', price: '14 990 ₽', desc: 'Современный сайт для старта бизнеса: до 3 страниц, адаптивный дизайн, настройка домена и хостинга' },
+    { name: 'Продвинутый', oldPrice: '27 990 ₽', price: '19 990 ₽', desc: 'Функциональный сайт с анимациями и оптимизацией: до 10 страниц, подключение аналитики и интеграций' },
+    { name: 'Проект под Ключ', oldPrice: '44 990 ₽', price: 'от 44 990 ₽', desc: 'Индивидуальный проект под ключ: уникальный дизайн, фирменный стиль, сопровождение и техническая поддержка' },
   ]
 
   const codeLines = [
@@ -162,17 +163,17 @@ export default function FullLanding() {
           <div className="flex flex-col items-center gap-3">
             {/* Телефон и кнопка видны только на больших экранах */}
             <a
-              href="tel:+79539015434"
+              href="tel:+79137717944"
               className="hidden lg:block text-gray-700 text-lg font-semibold hover:text-cyan-600 transition-colors"
             >
-              +7 (953) 901-54-34
+              +7 (913) 771-79-44
             </a>
 
             <Button
               className="hidden lg:inline bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 text-white px-8 py-3 rounded-full shadow-md hover:scale-105 hover:shadow-xl transition-transform text-xl font-semibold"
               asChild
             >
-              <a href="https://t.me/hanlaevm5" target="_blank" rel="noopener noreferrer">
+              <a href="https://t.me/manager_fs54" target="_blank" rel="noopener noreferrer">
                 Заказать сайт
               </a>
             </Button>
@@ -205,15 +206,15 @@ export default function FullLanding() {
                   </a>
                 ))}
 
-                <a href="tel:+79539015434" className="text-gray-700 text-lg font-semibold hover:text-cyan-600 transition-colors">
-                  +7 (953) 901-54-34
+                <a href="tel:+79137717944" className="text-gray-700 text-lg font-semibold hover:text-cyan-600 transition-colors">
+                  +7 (913) 771-79-44
                 </a>
 
                 <Button
                   className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 text-white px-6 py-3 rounded-full shadow-md hover:scale-105 hover:shadow-xl transition-transform text-base font-semibold"
                   asChild
                 >
-                  <a href="https://t.me/hanlaevm5" target="_blank" rel="noopener noreferrer">
+                  <a href="https://t.me/manager_fs54" target="_blank" rel="noopener noreferrer">
                     Заказать сайт
                   </a>
                 </Button>
@@ -249,14 +250,14 @@ export default function FullLanding() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-lg md:text-xl text-gray-700 mb-15"
           >
-            Мы создаём современные сайты для бизнеса — быстро, красиво и с фокусом на результат.
-            Ваш сайт - инструмент, который работает 24/7 и помогает продавать.
+            Мы занимаемся разработкой современных сайтов, digital-сервисов и ботов для бизнеса — быстро, красиво и с фокусом на результат.
+            Ваш сайт - инструмент, который работает 24/7 и продает.
           </motion.p>
           <Button
             className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 text-white text-2xl font-semibold px-15 py-6 rounded-full shadow-lg hover:scale-105 hover:shadow-2xl transition-all flex items-center gap-2 mx-auto"
             asChild
           >
-            <a href="https://t.me/hanlaevm5" target="_blank" rel="noopener noreferrer">
+            <a href="https://t.me/manager_fs54" target="_blank" rel="noopener noreferrer">
               Заказать сайт
             </a>
           </Button>
@@ -303,7 +304,8 @@ export default function FullLanding() {
       <section id="process" className="relative z-10 py-20 px-6">
         <div className="bg-white rounded-3xl shadow-xl p-8 max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-12 text-cyan-500">Как мы работаем</h2>
-          <div className="space-y-6">
+
+          <div className="flex flex-col items-center space-y-6">
             {processSteps.map((step, i) => (
               <motion.div
                 key={i}
@@ -311,19 +313,24 @@ export default function FullLanding() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="bg-gray-50 p-6 rounded-xl shadow-sm text-gray-700 hover:shadow-md hover:translate-x-1 transition-all mx-auto max-w-xl"
+                className="bg-gray-50 p-6 rounded-xl shadow-sm text-gray-700 hover:shadow-md hover:translate-x-1 transition-all flex items-start text-left w-full max-w-xl"
               >
-                <span className="font-semibold mr-2">{i + 1}.</span> {step}
+                <span className="font-semibold text-cyan-500 w-37.5 text-right mr-3 flex-shrink-0">
+                  {i + 1}.
+                </span>
+                <p className="flex-1">{step}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+
       {/* Tariffs Section */}
       <section id="tariffs" className="relative z-10 py-20 px-6">
         <div className="bg-white rounded-3xl shadow-xl p-8 max-w-6xl mx-auto text-center space-y-8">
           <h2 className="text-3xl font-bold mb-12 text-cyan-500">Тарифы</h2>
+
           <div className="grid md:grid-cols-3 gap-8">
             {tariffs.map((t, i) => (
               <motion.div
@@ -333,13 +340,30 @@ export default function FullLanding() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 whileHover={{ scale: 1.03, boxShadow: '0 15px 35px rgba(0,0,0,0.1)' }}
-                className="bg-gray-50 p-8 rounded-2xl shadow-sm mx-auto"
+                className="bg-gray-50 p-8 rounded-2xl shadow-sm mx-auto transition-transform"
               >
                 <h3 className="text-xl font-bold mb-2 text-cyan-600">{t.name}</h3>
                 <p className="text-gray-700 mb-4">{t.desc}</p>
-                <p className="text-2xl font-semibold mb-6">{t.price}</p>
-                <Button className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 text-white px-6 py-3 rounded-full mx-auto" asChild>
-                  <a href="https://t.me/hanlaevm5" target="_blank" rel="noopener noreferrer">Выбрать</a>
+
+                {/* Цена со скидкой */}
+                <div className="mb-6">
+                  {/* {t.oldPrice && ( //СКИДКИ.....NEWYear...............................................................
+                    <span className="text-gray-400 line-through text-lg mr-2">
+                      {t.oldPrice}
+                    </span>
+                  )} */}
+                  <span className="text-2xl font-semibold text-gray-900">
+                    {t.price}
+                  </span>
+                </div>
+
+                <Button
+                  className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 text-white px-6 py-3 rounded-full mx-auto"
+                  asChild
+                >
+                  <a href="https://t.me/manager_fs54" target="_blank" rel="noopener noreferrer">
+                    Выбрать
+                  </a>
                 </Button>
               </motion.div>
             ))}
@@ -348,11 +372,12 @@ export default function FullLanding() {
       </section>
 
 
+
       {/* Live Code Section */}
       <section className="relative z-10 py-15 px-6 mx-6 mb-1">
         <div className="bg-white rounded-2xl p-6 shadow-xl overflow-hidden w-full max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-6 text-cyan-500 text-center">
-            Сейчас создаётся код вашего сайта :)
+            Уже начали разрабатывать ваш сайт:)
           </h2>
           <div
             ref={(el) => {
@@ -385,14 +410,39 @@ export default function FullLanding() {
           <p className="text-gray-700 mb-6">
             Напишите нам прямо сейчас, и мы обсудим ваш проект.
           </p>
+
+          {/* Основная кнопка Telegram */}
           <Button
             className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 text-white px-8 py-4 rounded-full shadow-md hover:scale-105 hover:shadow-2xl transition-all mx-auto"
             asChild
           >
-            <a href="https://t.me/hanlaevm5" target="_blank" rel="noopener noreferrer">
+            <a href="https://t.me/manager_fs54" target="_blank" rel="noopener noreferrer">
               Написать в Telegram
             </a>
           </Button>
+
+          {/* Социальные иконки */}
+          <div className="flex justify-center gap-6 mt-6">
+            <a href="https://t.me/manager_fs54" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+              <FaTelegramPlane className="w-6 h-6 text-cyan-500 hover:text-blue-400 transition-colors" />
+            </a>
+            <a href="https://wa.me/79137717944" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <FaWhatsapp className="w-6 h-6 text-green-500 hover:text-green-400 transition-colors" />
+            </a>
+          </div>
+
+          {/* Гарантия ответа */}
+          <p className="text-gray-400 mt-4 text-sm">
+            Отвечаем в течение 1 часа.
+          </p>
+
+
+          {/* Альтернативные контакты */}
+          <p className="text-gray-500 mt-4 text-sm">
+            Или свяжитесь по email: <a href="mailto:info@site.ru" className="text-cyan-500 underline">hanlaevm5@gmail.com</a>
+            <br />
+            или по телефону: <a href="tel:+79137717944" className="text-cyan-500 underline">+7 (913) 771-79-44</a>
+          </p>
         </div>
       </section>
 
