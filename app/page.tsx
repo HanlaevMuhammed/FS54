@@ -11,29 +11,41 @@ export default function FullLanding() {
 
   // 🌧 Анимация дождя символов
   useEffect(() => {
+    // Проверяем тип устройства
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+
+    // Если мобильное устройство — выходим (отключаем анимацию)
+    if (isMobile) return
+
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Более “кодовые” символы
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     const fontSize = 16
-    let columns = Math.floor(window.innerWidth / fontSize)
+
+    // Безопасная установка размеров (ограничиваем)
+    const setSize = () => {
+      canvas.width = Math.min(window.innerWidth, 1920)
+      canvas.height = Math.min(window.innerHeight, 1080)
+    }
+    setSize()
+
+    let columns = Math.floor(canvas.width / fontSize)
     let drops = Array(columns).fill(0)
 
     const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      setSize()
       columns = Math.floor(canvas.width / fontSize)
       drops = Array(columns).fill(0)
     }
-    resize()
+
     window.addEventListener('resize', resize)
 
     let animationFrameId: number
     let lastTime = 0
-    const fps = 20 // частота кадров (меньше = медленнее)
+    const fps = 20
     const frameInterval = 1000 / fps
 
     const draw = (time = 0) => {
@@ -41,17 +53,15 @@ export default function FullLanding() {
       if (delta > frameInterval) {
         lastTime = time
 
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.05)'
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.06)'
         ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-        ctx.fillStyle = '#00d0ffff' // зелёный “матрицный” код
+        ctx.fillStyle = 'rgba(0, 208, 255, 1)'
         ctx.font = fontSize + 'px monospace'
 
         for (let i = 0; i < drops.length; i++) {
           const text = letters[Math.floor(Math.random() * letters.length)]
           ctx.fillText(text, i * fontSize, drops[i] * fontSize)
-
-          // медленнее падение
           drops[i] += Math.random() * 0.5 + 0.2
 
           if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
@@ -61,6 +71,7 @@ export default function FullLanding() {
       }
       animationFrameId = requestAnimationFrame(draw)
     }
+
     draw()
 
     return () => {
