@@ -317,7 +317,7 @@ export default function FullLanding() {
       </section>
 
       {/* Process Section */}
-      <section id="process" className="relative z-10 py-20 px-6">
+      <section id="process" className="relative z-10 py-20 px-4 sm:px-6 overflow-x-hidden">
         <div className="bg-white rounded-3xl shadow-xl p-8 max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-12 text-cyan-500">Как мы работаем</h2>
 
@@ -331,7 +331,7 @@ export default function FullLanding() {
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 className="bg-gray-50 p-6 rounded-xl shadow-sm text-gray-700 hover:shadow-md hover:translate-x-1 transition-all flex items-start text-left w-full max-w-xl"
               >
-                <span className="font-semibold text-cyan-500 w-37.5 text-right mr-3 flex-shrink-0">
+                <span className="font-semibold text-cyan-500 w-6 text-right mr-3 flex-shrink-0">
                   {i + 1}.
                 </span>
                 <p className="flex-1">{step}</p>
@@ -340,6 +340,7 @@ export default function FullLanding() {
           </div>
         </div>
       </section>
+
 
 
       {/* Tariffs Section */}
